@@ -24,8 +24,7 @@
             <a class="header active item" href="{% url 'story:index' %}">Home</a>
             <a class="item" href="{% url 'story:blogs' %}">All Blogs</a>
             <a class="item" href="{% url 'story:bloggers' %}">All Bloggers</a>
-            <a class="item" href="{% url 'story:index' %}">New hires</a>
-{#            <a class="item" href="blog.html#">About</a>#}
+            <a href="" class="item">All Comments</a>
         </div>
     </div>
 {% endblock %}
@@ -61,9 +60,9 @@
                     Sub Menu
                 </h4>
                 <div class="ui list">
-                    <a class="item">Home</a>
-                    <a class="item">All blogs</a>
-                    <a class="item">All bloggers</a>
+                    <a class="item" href="{% url 'story:index' %}">Home</a>
+                    <a class="item" href="{% url 'story:blogs' %}">All blogs</a>
+                    <a class="item" href="{% url 'story:bloggers' %}">All bloggers</a>
                 </div>
                 <h4 class="ui header">
                     Elsewhere

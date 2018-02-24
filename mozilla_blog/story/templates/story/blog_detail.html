@@ -1,5 +1,19 @@
 {% extends "story/base_generic.html" %}
 
 {% block content %}
-<p>blog detail</p>
+
+    {% if my_blog_detail %}
+        <h2 class="ui teal dividing header">
+            <i class="pencil alternate icon"></i>
+
+            <div class="content">
+                {{ my_blog_detail.title }}
+                <div class="sub header">Published on: {{ my_blog_detail.post_date }}</div>
+                <div class="sub header">By <a href="{{ my_blog_detail.blogger.get_absolute_url }}">{{ my_blog_detail.blogger }}</a></div>
+            </div>
+        </h2>
+        <div class="ui basic segment">
+            <p>{{ my_blog_detail.description }}</p>
+        </div>
+    {% endif %}
 {% endblock %}

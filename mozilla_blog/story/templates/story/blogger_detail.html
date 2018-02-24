@@ -1,5 +1,33 @@
 {% extends "story/base_generic.html" %}
 
 {% block content %}
-<p>This blogger detail</p>
+
+    {% if blogger %}
+        <h2 class="ui purple header">
+            <i class="user icon"></i>
+
+            <div class="content">
+                {{ blogger.last_name }} {{ blogger.first_name }}
+            </div>
+        </h2>
+        <div class="ui basic segment">
+            <h3 class="ui dividing header">Bio:</h3>
+            <p>{{ blogger.bio }}</p>
+        </div>
+        <div class="ui basic segment">
+            <h3 class="ui dividing header">Comments:</h3>
+            <div class="ui very relaxed divided list">
+            {% for comm in blogger.comment_set.all %}
+                    <div class="item">
+                        <div class="content">
+                            <a class="header" href="{{ comm.blog.get_absolute_url }}">{{ comm.blog }}</a>
+                            <div class="description">{{ comm.comment }}</div>
+                        </div>
+                    </div>
+
+            {% endfor %}
+             </div>
+        </div>
+
+    {% endif %}
 {% endblock %}

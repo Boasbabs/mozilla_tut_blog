@@ -15,7 +15,7 @@ class Blogger(models.Model):
         ordering = ["-first_name"]
 
     def get_absolute_url(self):
-        return reverse("blogger-detail", args=[str(self.id)])
+        return reverse("story:blogger-detail", args=[str(self.id)])
 
     def __str__(self):
         """
@@ -40,7 +40,7 @@ class BlogPost(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular instance of model"""
-        return reverse("blog-detail", args=[str(self.id)])
+        return reverse("story:blog-detail", args=[str(self.id)])
 
     def __str__(self):
         """
@@ -61,6 +61,10 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ["-post_time"]
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of model"""
+        return reverse("story:blog-detail", args=[str(self.id)])
 
     def __str__(self):
         """String representation of the comments object"""

@@ -9,4 +9,5 @@ urlpatterns = [
     path("blog/blogs/", views.BlogPostListView.as_view(), name="blogs"),
     path("blog/blogger/<int:pk>", views.BloggerDetailView.as_view(), name="blogger-detail"),
     path("blog/bloggers/", views.BloggerListView.as_view(), name="bloggers"),
+    # path("blog/comments/", views.BloggerListView.as_view(), name="bloggers"),
 ]
