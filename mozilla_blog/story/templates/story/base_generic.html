@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no" name="viewport" />
-    <meta content="blog." name="description" />
+    <meta content="blog" name="description" />
     <meta content="blog" name="keywords" />
     <meta content="PPType" name="author" />
     {% block title %}
@@ -21,11 +21,11 @@
 {% block menu %}
     <div class="ui borderless fixed blue inverted pointing menu">
         <div class="ui container">
-            <a class="header active item" href="{% url 'index' %}">Home</a>
-            <a class="item" href="blog.html#">New feature</a>
-            <a class="item" href="blog.html#">Press</a>
-            <a class="item" href="blog.html#">New hires</a>
-            <a class="item" href="blog.html#">About</a>
+            <a class="header active item" href="{% url 'story:index' %}">Home</a>
+            <a class="item" href="{% url 'story:blogs' %}">All Blogs</a>
+            <a class="item" href="{% url 'story:bloggers' %}">All Bloggers</a>
+            <a class="item" href="{% url 'story:index' %}">New hires</a>
+{#            <a class="item" href="blog.html#">About</a>#}
         </div>
     </div>
 {% endblock %}
@@ -42,9 +42,11 @@
         </div>
     {% endblock %}
     <div class="row" id="article">
-        {% block content %}
+        <div class="eleven wide column">
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
         {% block side_bar %}
             <div class="four wide right floated column">
                 <div class="ui secondary segment">

@@ -30,7 +30,7 @@ class BlogPost(models.Model):
     Blog post by the authors
     """
     title = models.CharField(max_length=225, help_text="Enter the title of your blog")
-    blogger = models.ForeignKey("Blogger", on_delete=models.CASCADE)
+    blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     description = models.TextField(max_length=2000, help_text="Write your article")
     post_date = models.DateTimeField("date posted", default=timezone.now)
 
@@ -54,10 +54,10 @@ class Comment(models.Model):
     """
     This is model for comment a each specific blog post
     """
-    author = models.ForeignKey("Blogger", on_delete=models.CASCADE)
+    author = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     comment = models.TextField(max_length=500, help_text="Enter your comments")
     post_time = models.DateTimeField("time posted", default=timezone.now)
-    blog = models.ForeignKey("BlogPost", on_delete=models.CASCADE)
+    blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["-post_time"]

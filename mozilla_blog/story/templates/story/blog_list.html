@@ -1,0 +1,23 @@
+{% extends "story/base_generic.html" %}
+
+{% block content %}
+
+        <div class="ui very relaxed middle aligned divided list">
+            {% if blogpost_list %}
+                {% for my_blog in blogpost_list %}
+                    <div class="item">
+                        <div class="right floated content">
+                            <h4 class="ui teal header">
+                                <a href="">{{ my_blog.blogger }}</a>
+                            </h4>
+                        </div>
+                        <div class="content">
+                            <h4><a href="{{ my_blog.get_absolute_url }}" class="header">{{ my_blog.title }}</a></h4>
+                            <div class="description">{{ my_blog.post_date }}.</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+{% endblock %}
