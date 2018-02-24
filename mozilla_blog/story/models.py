@@ -50,7 +50,7 @@ class BlogPost(models.Model):
         return self.title
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     """
     This is model for comment a each specific blog post
     """
