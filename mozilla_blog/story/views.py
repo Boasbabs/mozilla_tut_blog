@@ -5,7 +5,7 @@ from .models import Blogger, BlogPost, Comment
 
 
 def index(request):
-    return render(request, "story/index.html", context={})
+    return render(request, "story/index.html")
 
 
 class BlogPostListView(generic.ListView):
