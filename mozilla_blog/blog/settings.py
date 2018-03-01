@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import dj_database_url
+from decouple import config
 # import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,10 +23,11 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "4t^n%65=#$+4cdcgv4xm!dd*veqgov!(k=djvd&yq9((g_jdn6"
+SECRET_KEY = config('SECRET_KEY', default='in_production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 # Application definition
 
@@ -68,7 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'debug': True,
+            'debug': DEBUG,
         },
     },
 ]
@@ -121,7 +123,9 @@ DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['boasbabsblog.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v:[s.strip() for s in v.split(',')], default='*')
+
+INTERNAL_TIPS = ['0.0.0.0', '127.0.0.1', 'localhost', ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
