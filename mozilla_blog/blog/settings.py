@@ -29,6 +29,9 @@ SECRET_KEY = config('SECRET_KEY', default='in_production')
 # DEBUG = False
 DEBUG = config('DEBUG', default=True, cast=bool)
 
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='*')
+
+INTERNAL_TIPS = ['0.0.0.0', '127.0.0.1', 'localhost', ]
 # Application definition
 
 INSTALLED_APPS = [
@@ -123,9 +126,6 @@ DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v:[s.strip() for s in v.split(',')], default='*')
-
-INTERNAL_TIPS = ['0.0.0.0', '127.0.0.1', 'localhost', ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -142,14 +142,15 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
+if not DEBUG:
+    SECURE_CONTENT_TYPE_NOSNIFF = True
 
-SECURE_BROWSER_XSS_FILTER = True
+    SECURE_BROWSER_XSS_FILTER = True
 
-SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = True
 
-SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
-CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
-X_FRAME_OPTIONS = "DENY"
+    X_FRAME_OPTIONS = "DENY"
